@@ -1,0 +1,21 @@
+.navbar {
+  padding: 0rem 0rem;
+  background-color: #F5F9FA;
+  color: #000000 !important;
+  position: relative;
+  box-shadow: 5px 0px 10px -2px #545454;
+}
+
+.nav-item{
+  margin-right: 5px;
+}
+
+.bd-navbar .navbar-nav .nav-link {
+  padding-right: .5rem;
+  padding-left: .5rem;
+  color: #000000;
+}
+
+.visibility{
+  display:none;
+}

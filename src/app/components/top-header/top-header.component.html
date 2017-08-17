@@ -1,0 +1,83 @@
+<header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+  <a>&nbsp;&nbsp;</a>
+  <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="Bootstrap">
+    <img src="assets/img/logo.png" style="padding-let: 2em">
+  </a>
+
+  <div class="navbar-nav-scroll">
+    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+      <li class="nav-item dropdown " [ngClass]="{show:showAddLayer}">
+        <a class="nav-item nav-link imap-button-default" (click)="toggleAddLayer()">
+          ADD LAYER
+        </a>
+        <div class="dropdown-menu layer-container"  [ngClass]="{show:showAddLayer}">
+          <app-new-layer-form></app-new-layer-form>
+          <div class="col-12">
+            <div class="d-flex justify-content-end">
+              <a class="imap-button-default" (click)="cancelAddLayer()">
+                CANCEL
+              </a>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item dropdown " [ngClass]="{visibility:wrenchButtonVisibility}">
+        <a class="nav-item nav-link dropdown-toggle mr-md-2 imap-button-default"  (click)="toggleFavouritePanel()">
+          FAVOURITES
+        </a>
+        <div class="dropdown-menu layer-container"  [ngClass]="{show:showFavouritePanel}">
+          <app-favourites></app-favourites>
+          <div class="col-12">
+            <div class="d-flex justify-content-end">
+              <a class="imap-button-default" (click)="cancelFavouritePanel()">
+                CANCEL
+              </a>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item"  [ngClass]="{visibility:wrenchButtonVisibility}">
+        <a class="nav-item nav-link imap-button-default">
+          CHART
+        </a>
+      </li>
+      <li class="nav-item"  [ngClass]="{visibility:wrenchButtonVisibility}">
+        <a class="nav-item nav-link imap-button-default">
+          TABLE
+        </a>
+      </li>
+      <li class="nav-item"  [ngClass]="{visibility:wrenchButtonVisibility}">
+        <a class="nav-item nav-link imap-button-default">
+          SHARE
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link imap-button-default" (click)="toggleWrenchButtons()">
+          <i class="fa fa-wrench" *ngIf="wrenchButtonVisibility"></i>
+          <i class="fa fa-remove" *ngIf="!wrenchButtonVisibility"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+    <li class="nav-item dropdown show">
+      <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-cog"></i>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right show" aria-labelledby="bd-versions">
+        <a class="dropdown-item active" style="cursor: pointer" >2D View</a>
+        <a class="dropdown-item"  style="cursor: pointer">3D View</a>
+      </div>
+    </li>
+    &nbsp;
+    <li class="nav-item">
+      <a class="nav-item nav-link" title="2D View" >2D</a>
+    </li>
+    <li class="nav-item">
+      &nbsp;
+    </li>
+  </ul>
+</header>
+<div></div>

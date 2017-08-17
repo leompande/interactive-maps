@@ -1,0 +1,40 @@
+.map-viewer-container {
+  min-height: 500px;
+  min-width: 500px;
+  width: 100%;
+  position: absolute;
+  top: 43px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  z-index: -1;
+}
+
+.map-control-widgets{
+  position: absolute;
+  margin-top: 10px;
+  margin-left:10px;
+  box-shadow: 2px 2px 5px -3px #545454;
+}
+
+.zoom-control{
+  background-color: #ffffff;
+}
+
+.original-zoom , .positive-zoom-button , .negative-zoom-button{
+  padding-top:0.2rem;
+  padding-bottom:0.2rem;
+  padding-left:0.5rem;
+  padding-right:0.5rem;
+  cursor: pointer;
+  /*font-weight:bolder;*/
+}
+
+.original-zoom{
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+}
+
+.original-zoom:hover , .positive-zoom-button:hover , .negative-zoom-button:hover{
+  background-color: #cccccc;
+}
