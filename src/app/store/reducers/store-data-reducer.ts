@@ -15,7 +15,6 @@ export function storeDataReducer(state: StoreData = INITIAL_STORE_DATA, action) 
 
     case MAPS_FAVOURITE_LOADED_ACTION: {
       const newState: StoreData = _.clone(state);
-      console.log(action.payload);
       newState.mapFavourites = action.payload;
       return newState;
     }

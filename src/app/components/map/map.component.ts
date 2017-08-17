@@ -18,7 +18,7 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     this.store.select(favoriteSelector).subscribe(favourite => {
-      console.log("FAVOURITES FROM MAP COMPONENT");
+      // console.log("FAVOURITES FROM MAP COMPONENT");
       console.log(favourite);
     });
   }

@@ -11,7 +11,6 @@ export class FavoriteService {
   }
 
   getMapFavourites(apiRootUrl: string): Observable<any> {
-
     return Observable.create(observer => {
       if (apiRootUrl && apiRootUrl !== '') {
         this.http.get(apiRootUrl + 'maps.json?fields=id,displayName~rename(name),access').subscribe((mapFavorites: any) => {
