@@ -1,2 +1,6 @@
-<app-top-header></app-top-header>
-<app-map-viewer></app-map-viewer>
+<app-top-header
+  [mapFavourites]="mapFavourites$"
+></app-top-header>
+<app-map-viewer
+  [currentFavourite$]="currentFavourite$"
+></app-map-viewer>

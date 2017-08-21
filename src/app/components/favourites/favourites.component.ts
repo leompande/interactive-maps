@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-favourites',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./favourites.component.css']
 })
 export class FavouritesComponent implements OnInit {
-
+  @Input() mapFavourites;
   constructor() { }
 
   ngOnInit() {

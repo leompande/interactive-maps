@@ -1,3 +1,24 @@
 <div class="favourite-manager-overlay">
-  Manage favourites
+  <div class="favourite-manager-header">
+    <div class="favourite-manager-header-title">
+      Manage Favourites
+    </div>
+  </div>
+  <div class="favourite-manager-body">
+    <ul>
+      <li *ngFor="let favourite of mapFavourites">
+        <div class="row">
+          <div class="col-9 favourite-name" routerLink="/favourite/{{favourite.id}}">{{favourite.name}}</div>
+          <div class="col-3">
+            <div class="btn-group pull-right action-buttons">
+              <a ><i class="fa fa-share alert-success"></i></a>
+              <a ><i class="fa fa-pencil alert-warning"></i></a>
+              <a ><i class="fa fa-trash alert-danger"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </li>
+    </ul>
+  </div>
 </div>

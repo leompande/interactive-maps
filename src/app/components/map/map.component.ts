@@ -3,6 +3,8 @@ import {ActivatedRoute} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {ApplicationState} from '../../store/application-state';
 import {favoriteSelector} from "../../store/selectors/favorites.selector";
+import {LoadMapSingleFavouriteForDisplayAction} from "../../store/actions";
+import {currentFavoriteSelector} from "../../store/selectors/currentFavorites.selector";
 
 @Component({
   selector: 'app-map',
@@ -10,16 +12,25 @@ import {favoriteSelector} from "../../store/selectors/favorites.selector";
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  private routeObservable: any;
-  favouriteId: string = null;
+  mapFavourites$: any;
+  currentFavourite$: any;
 
   constructor(private store: Store<ApplicationState>, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+
     this.store.select(favoriteSelector).subscribe(favourite => {
-      // console.log("FAVOURITES FROM MAP COMPONENT");
-      console.log(favourite);
+      this.mapFavourites$ = favourite;
+    });
+    /**
+     * Subscribing for active route
+     * */
+    this.route.params.subscribe(activeRoute => {
+      if (activeRoute.id) {
+        this.store.dispatch(new LoadMapSingleFavouriteForDisplayAction(activeRoute.id));
+        console.log(activeRoute.id);
+      }
     });
   }
 

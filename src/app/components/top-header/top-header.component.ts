@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {OutletContext} from "@angular/router";
 
 @Component({
   selector: 'app-top-header',
@@ -9,11 +10,14 @@ export class TopHeaderComponent implements OnInit {
   showAddLayer: boolean = false;
   showFavouritePanel: boolean = false;
   wrenchButtonVisibility: boolean = true;
+  @Input() mapFavourites;
+  @Output() favouriteSelected = new EventEmitter;
 
   constructor() {
   }
 
   ngOnInit() {
+
   }
 
   /**
