@@ -1,6 +1,5 @@
 export interface StoreData {
   currentUser: '';
-  mapFavourites: any[];
   systemInfo: {
     rootUrl: string;
     apiRootUrl: undefined,
@@ -9,7 +8,7 @@ export interface StoreData {
     minSupportedVersion: number;
     loaded: boolean;
   };
-  currentFavourite: object;
+  mapFavourites: any[];
 }
 
 export const INITIAL_STORE_DATA: StoreData = {
@@ -22,7 +21,6 @@ export const INITIAL_STORE_DATA: StoreData = {
     minSupportedVersion: 2.18,
     loaded: false
   },
-  mapFavourites: [],
-  currentFavourite: {}
+  mapFavourites: undefined
 };
 

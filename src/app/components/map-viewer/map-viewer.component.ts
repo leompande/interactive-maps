@@ -1,37 +1,42 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {ApplicationState} from '../../store/application-state';
-
 import * as L from 'leaflet';
-import {currentFavoriteSelector} from "../../store/selectors/currentFavorites.selector";
+import {currentMapSelector} from '../../store/selectors/current-map.selector';
+
 @Component({
   selector: 'app-map-viewer',
   templateUrl: './map-viewer.component.html',
   styleUrls: ['./map-viewer.component.css']
 })
 export class MapViewerComponent implements OnInit {
-  @Input() currentFavourite$;
+  @Input() currentFavourite;
+  map: any;
+  currentMap: any;
 
   constructor(private store: Store<ApplicationState>) {
   }
 
   ngOnInit() {
-    // const map = L.map('map', {zoomControl: false}).setView([23.6448789, 25.3540765], 3);
-    // L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-    //     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    //   }
-    // ).addTo(map);
-
-    this.store.select(currentFavoriteSelector).subscribe((currentFavourite: any) => {
-      if (currentFavourite.hasOwnProperty('id')) {
-        const map = L.map('map', {zoomControl: false}).setView([currentFavourite.latitude, currentFavourite.longitude], currentFavourite.zoom);
-        L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          }
-        ).addTo(map);
-        // currentFavourite.longitude
-        // map.setView([ currentFavourite.longitude, currentFavourite.latitude], currentFavourite.zoom);
+    this.store.select(currentMapSelector).subscribe((currentMap: any) => {
+      if (currentMap) {
+        this.currentMap = currentMap;
+        this.map = this.map ? this.map.remove() : null;
+        this.map = L.map('map', {zoomControl: false}).setView(currentMap.center, currentMap.zoom);
+        currentMap.layers.forEach((layer) => {
+          layer.addTo(this.map);
+        });
       }
     });
   }
+
+  /**
+   * Update map Zoom Level
+   * */
+  zoomIn(zoomType) {
+    zoomType === 'in' ? this.map.zoomIn() :
+      zoomType === 'out' ? this.map.zoomOut() :
+        this.map.setZoom(this.currentMap.zoom);
+  }
+
 }

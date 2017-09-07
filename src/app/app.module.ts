@@ -11,9 +11,9 @@ import {ManifestService} from './providers/manifest.service';
 import {LoginRedirectService} from './providers/login-redirect.service';
 import {HttpClientService} from './providers/http-client.service';
 import {CurrentUserService} from './providers/current-user.service';
-import {NewLayerFormComponent } from './components/forms/new-layer-form/new-layer-form.component';
-import {FavouritesComponent } from './components/favourites/favourites.component';
-import {MapComponent } from './components/map/map.component';
+import {NewLayerFormComponent} from './components/forms/new-layer-form/new-layer-form.component';
+import {FavouritesComponent} from './components/favourites/favourites.component';
+import {MapComponent} from './components/map/map.component';
 import {AppRoutingModule} from './app.routing.module';
 import {EffectsModule} from '@ngrx/effects';
 import {SystemInfoEffect} from './store/effects/system-info.effect';
@@ -22,6 +22,9 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {storeDataReducer} from './store/reducers/store-data-reducer';
 import {uiStateReducer} from './store/reducers/ui-store-reducer';
 import {FavoriteEffect} from './store/effects/favorite.effect';
+import {MapService} from './providers/map-service.service';
+import {MapViewEffects} from './store/effects/map-view.effects';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import {FavoriteEffect} from './store/effects/favorite.effect';
     MapViewerComponent,
     NewLayerFormComponent,
     FavouritesComponent,
-    MapComponent
+    MapComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +43,10 @@ import {FavoriteEffect} from './store/effects/favorite.effect';
     StoreModule.provideStore({uiState: uiStateReducer, storeData: storeDataReducer}, INITIAL_APPLICATION_STATE),
     EffectsModule.run(SystemInfoEffect),
     EffectsModule.run(FavoriteEffect),
+    EffectsModule.run(MapViewEffects),
     StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],
-  providers: [SystemInfoService, ManifestService, LoginRedirectService, HttpClientService, CurrentUserService, FavoriteService],
+  providers: [SystemInfoService, ManifestService, LoginRedirectService, HttpClientService, CurrentUserService, FavoriteService, MapService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

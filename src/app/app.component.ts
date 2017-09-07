@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ApplicationState} from './store/application-state';
 import {Store} from '@ngrx/store';
 import {
-  LoadMapsFavouritesAction,
   LoadSystemInfoAction
 } from './store/actions';
 import {apiRootUrlSelector} from './store/selectors/api-root-url.selector';
@@ -18,11 +17,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.select(apiRootUrlSelector).subscribe((rootUrl: any) => {
-      if (rootUrl !== '') {
-        this.store.dispatch(new LoadMapsFavouritesAction(rootUrl));
-      }
-    });
+
   }
 
 }

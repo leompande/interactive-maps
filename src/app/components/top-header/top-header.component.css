@@ -1,9 +1,7 @@
 .navbar {
   padding: 0rem 0rem;
-  background-color: #F5F9FA;
   color: #000000 !important;
   position: relative;
-  box-shadow: 5px 0px 10px -2px #545454;
 }
 
 .nav-item{
@@ -18,4 +16,8 @@
 
 .visibility{
   display:none;
+}
+
+.map-view-mode-lable{
+  font-weight:bold;
 }

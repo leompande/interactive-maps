@@ -3,7 +3,7 @@
   min-width: 500px;
   width: 100%;
   position: absolute;
-  top: 43px;
+  top: 0px;
   left: 0px;
   bottom: 0px;
   right: 0px;
@@ -36,5 +36,6 @@
 }
 
 .original-zoom:hover , .positive-zoom-button:hover , .negative-zoom-button:hover{
-  background-color: #cccccc;
+  background-color: #ffffff;
+  opacity: 1;
 }

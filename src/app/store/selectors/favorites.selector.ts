@@ -1,4 +1,4 @@
 import {ApplicationState} from '../application-state';
-export function favoriteSelector(state: ApplicationState) {
+export function favoritesSelector(state: ApplicationState) {
   return state.storeData.mapFavourites;
 }

@@ -1,9 +1,7 @@
 import * as _ from 'lodash';
 import {INITIAL_UI_STATE, UiState} from '../ui-state';
 import {
-  MAP_SINGLE_FAVOURITE_FOR_DISPLAY_LOADED_ACTION,
-  MAPS_FAVOURITE_LOADED_ACTION,
-  SYSTEM_INFO_LOADED_ACTION
+  CURRENT_FAVOURITE_SELECTED_FROM_URL_LOADED_ACTION, SYSTEM_INFO_LOADED_ACTION,
 } from '../actions';
 export function uiStateReducer(state: UiState = INITIAL_UI_STATE, action) {
   switch (action.type) {
@@ -18,9 +16,13 @@ export function uiStateReducer(state: UiState = INITIAL_UI_STATE, action) {
       newState.systemInfo = newSystemInfo;
       return newState;
     }
-    case MAP_SINGLE_FAVOURITE_FOR_DISPLAY_LOADED_ACTION: {
+    case CURRENT_FAVOURITE_SELECTED_FROM_URL_LOADED_ACTION: {
       const newState: UiState = _.clone(state);
-      newState.currentFavourite = action.payload;
+      const currentMap = _.clone(newState.currentMap);
+      currentMap.zoom = action.payload.zoom;
+      currentMap.center = action.payload.center;
+      currentMap.layers = action.payload.layers;
+      newState.currentMap = currentMap;
       return newState;
     }
 

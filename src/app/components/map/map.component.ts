@@ -2,9 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {ApplicationState} from '../../store/application-state';
-import {favoriteSelector} from "../../store/selectors/favorites.selector";
-import {LoadMapSingleFavouriteForDisplayAction} from "../../store/actions";
-import {currentFavoriteSelector} from "../../store/selectors/currentFavorites.selector";
+import {favoritesSelector} from '../../store/selectors/favorites.selector';
+import {
+  LoadCurrentFavouriteSelectedFromUrlAction, LoadUserFavouritesAction
+} from '../../store/actions';
+import {Observable} from 'rxjs/Observable';
+import {currentMapSelector} from '../../store/selectors/current-map.selector';
+import {apiRootUrlSelector} from '../../store/selectors/api-root-url.selector';
 
 @Component({
   selector: 'app-map',
@@ -12,26 +16,39 @@ import {currentFavoriteSelector} from "../../store/selectors/currentFavorites.se
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  mapFavourites$: any;
-  currentFavourite$: any;
+  currentMap: any;
+  mapFavourites: any;
 
   constructor(private store: Store<ApplicationState>, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
 
-    this.store.select(favoriteSelector).subscribe(favourite => {
-      this.mapFavourites$ = favourite;
-    });
-    /**
-     * Subscribing for active route
-     * */
-    this.route.params.subscribe(activeRoute => {
-      if (activeRoute.id) {
-        this.store.dispatch(new LoadMapSingleFavouriteForDisplayAction(activeRoute.id));
-        console.log(activeRoute.id);
+    this.store.select(apiRootUrlSelector).subscribe(apiRoute => {
+      /**
+       * Subscribing for active route after systeminfo load and api route is retrieved
+       * */
+      if (apiRoute) {
+        this.route
+          .queryParams
+          .subscribe(params => {
+            if (params && params.hasOwnProperty('id')) {
+              this.store.dispatch(new LoadCurrentFavouriteSelectedFromUrlAction({
+                favouriteId: params.id,
+                apiUrl: apiRoute
+              }));
+            }
+          });
       }
+
+      this.store.dispatch(new LoadUserFavouritesAction({apiUrl: apiRoute}));
+
     });
+
+    this.store.select(favoritesSelector).subscribe(mapFavourites => {
+      this.mapFavourites = mapFavourites;
+    })
+
   }
 
 }

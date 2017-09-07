@@ -1,23 +1,32 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {OutletContext} from "@angular/router";
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {ApplicationState} from '../../store/application-state';
 
 @Component({
   selector: 'app-top-header',
   templateUrl: './top-header.component.html',
-  styleUrls: ['./top-header.component.css']
+  styleUrls: ['./top-header.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopHeaderComponent implements OnInit {
   showAddLayer: boolean = false;
   showFavouritePanel: boolean = false;
   wrenchButtonVisibility: boolean = true;
+  showViewModeConfiguration: boolean = false;
+  viewModeConfiguration: string = '2D';
+  currentFavouritePage: Array<any>;
   @Input() mapFavourites;
   @Output() favouriteSelected = new EventEmitter;
 
-  constructor() {
+  constructor(private store: Store<ApplicationState>) {
   }
 
   ngOnInit() {
 
+  }
+
+  setCurrentFavouritePage(event){
+    this.currentFavouritePage = event;
   }
 
   /**
@@ -49,6 +58,14 @@ export class TopHeaderComponent implements OnInit {
 
   toggleWrenchButtons() {
     this.wrenchButtonVisibility = !this.wrenchButtonVisibility;
+  }
+
+  toggleViewModeConfiguration() {
+    this.showViewModeConfiguration = !this.showViewModeConfiguration;
+  }
+
+  changeViewMode(currentMode) {
+    this.viewModeConfiguration = currentMode === '2D' ? '2D' : '3D';
   }
 
 }

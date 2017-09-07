@@ -8,8 +8,12 @@ export interface UiState {
     minSupportedVersion: number;
     loaded: boolean;
   };
-  currentFavourite: object;
-  mapFavourites: object;
+  currentFavourite: any;
+  currentMap: {
+    center: Array<number>,
+    zoom: number,
+    layers: Array<any>
+  };
 }
 
 export const INITIAL_UI_STATE = {
@@ -23,5 +27,13 @@ export const INITIAL_UI_STATE = {
     loaded: false
   },
   currentFavourite: undefined,
-  mapFavourites: undefined
+  currentMap: {
+      center: [51.505, -0.09],
+      zoom: 13,
+      layers: [
+        L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        })
+      ]
+    }
 };

@@ -2,15 +2,14 @@ import {Action} from '@ngrx/store';
 import {CurrentUser} from '../model/current-user';
 import {SystemInfo} from '../providers/system-info.service';
 export const LOAD_SYSTEM_INFO_ACTION = 'LOAD_SYSTEM_INFO_ACTION';
-export const LOAD_MAPS_FAVOURITE_ACTION = 'LOAD_MAPS_FAVOURITE_ACTION';
-export const MAPS_FAVOURITE_LOADED_ACTION = 'MAPS_FAVOURITE_LOADED_ACTION';
-export const LOAD_MAP_SINGLE_FAVOURITE_FOR_DISPLAY_ACTION = 'LOAD_MAP_SINGLE_FAVOURITE_FOR_DISPLAY_ACTION';
-export const MAP_SINGLE_FAVOURITE_FOR_DISPLAY_LOADED_ACTION = 'MAP_SINGLE_FAVOURITE_FOR_DISPLAY_LOADED_ACTION';
 export const SYSTEM_INFO_LOADED_ACTION = 'SYSTEM_INFO_LOADED_ACTION';
+export const LOAD_CURRENT_FAVOURITE_SELECTED_FROM_URL_ACTION = 'LOAD_CURRENT_FAVOURITE_SELECTED_FROM_URL_ACTION';
+export const CURRENT_FAVOURITE_SELECTED_FROM_URL_LOADED_ACTION = 'CURRENT_FAVOURITE_SELECTED_FROM_URL_LOADED_ACTION';
+export const LOAD_USER_FAVOURITES_ACTION = 'LOAD_USER_FAVOURITES_ACTION';
+export const USER_FAVOURITES_LOADED_ACTION = 'USER_FAVOURITES_LOADED_ACTION';
+export const RETRIEVE_CURRENT_MAP_VISUALIZATION_OBJECT = 'RETRIEVE_CURRENT_MAP_VISUALIZATION_OBJECT';
+export const CURRENT_MAP_VISUALIZATION_OBJECT_RETRIEVED = 'CURRENT_MAP_VISUALIZATION_OBJECT_RETRIEVED';
 export const ERROR_OCCURRED_ACTION = 'ERROR_OCCURRED_ACTION';
-export const CLEAR_MESSAGE_ACTION = 'CLEAR_MESSAGE_ACTION';
-export const LOAD_CURRENT_USER_ACTION = 'LOAD_CURRENT_USER_ACTION';
-export const CURRENT_USER_LOADED_ACTION = 'CURRENT_USER_LOADED_ACTION';
 
 export class LoadSystemInfoAction implements Action {
   readonly type = LOAD_SYSTEM_INFO_ACTION;
@@ -18,35 +17,88 @@ export class LoadSystemInfoAction implements Action {
 
 export class SystemInfoLoadedAction implements Action {
   readonly type = SYSTEM_INFO_LOADED_ACTION;
-  constructor (public payload: SystemInfo) {
+
+  constructor(public payload: SystemInfo) {
   }
 }
 
-export class LoadMapsFavouritesAction implements Action {
-  readonly type = LOAD_MAPS_FAVOURITE_ACTION;
-  constructor (public payload: string) {
+/**
+ * LOAD_CURRENT_FAVOURITE_SELECTED_FROM_URL_ACTION
+ * */
+export class LoadUserFavouritesAction implements Action {
+  readonly type = LOAD_USER_FAVOURITES_ACTION;
+
+  constructor(public payload: any) {
   }
 }
 
-export class MapsFavouritesLoadedAction implements Action {
-  readonly type = MAPS_FAVOURITE_LOADED_ACTION;
-  constructor (public payload: Array<object>) {
+/**
+ * CURRENT_FAVOURITE_SELECTED_FROM_URL_LOADED_ACTION
+ * */
+export class UserFavouritesLoadedAction implements Action {
+  readonly type = USER_FAVOURITES_LOADED_ACTION;
+
+  constructor(public payload: SystemInfo) {
   }
 }
 
-export class LoadMapSingleFavouriteForDisplayAction implements Action {
-  readonly type = LOAD_MAP_SINGLE_FAVOURITE_FOR_DISPLAY_ACTION;
-  constructor (public payload: Array<object>) {
+
+/**
+ * LOAD_CURRENT_FAVOURITE_SELECTED_FROM_URL_ACTION
+ * */
+export class LoadCurrentFavouriteSelectedFromUrlAction implements Action {
+  readonly type = LOAD_CURRENT_FAVOURITE_SELECTED_FROM_URL_ACTION;
+
+  constructor(public payload: any) {
   }
 }
 
-export class MapSingleFavouriteForDisplayLoadedAction implements Action {
-  readonly type = MAP_SINGLE_FAVOURITE_FOR_DISPLAY_LOADED_ACTION;
-  constructor (public payload: Array<object>) {
+/**
+ * CURRENT_FAVOURITE_SELECTED_FROM_URL_LOADED_ACTION
+ * */
+export class CurrentFavouriteSelectedFromUrlLoadedAction implements Action {
+  readonly type = CURRENT_FAVOURITE_SELECTED_FROM_URL_LOADED_ACTION;
+
+  constructor(public payload: SystemInfo) {
   }
 }
 
+/**
+ * RETRIEVE_CURRENT_MAP_VISUALIZATION_OBJECT
+ * */
+export class RetrieveCurrentMapVisualizationObject implements Action {
+  readonly type = RETRIEVE_CURRENT_MAP_VISUALIZATION_OBJECT;
+
+  constructor(public payload: SystemInfo) {
+  }
+}
+
+/**
+ * CURRENT_MAP_VISUALIZATION_OBJECT_RETRIEVED
+ * */
+export class CurrentMapVisualizationObjectRetrieved implements Action {
+  readonly type = CURRENT_MAP_VISUALIZATION_OBJECT_RETRIEVED;
+
+  constructor(public payload: SystemInfo) {
+  }
+}
+
+/**
+ * CURRENT_MAP_VISUALIZATION_OBJECT_RETRIEVED
+ * */
+export class UpdateCurrentMapAction implements Action {
+  readonly type = CURRENT_MAP_VISUALIZATION_OBJECT_RETRIEVED;
+
+  constructor(public payload: SystemInfo) {
+  }
+}
+
+/**
+ * ERROR_OCCURRED_ACTION
+ * */
 export class ErrorOccurredAction implements Action {
   readonly type = ERROR_OCCURRED_ACTION;
-  constructor(public payload: string) {}
+
+  constructor(public payload: string) {
+  }
 }
