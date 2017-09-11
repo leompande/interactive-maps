@@ -1,7 +1,8 @@
 import * as _ from 'lodash';
 import {INITIAL_UI_STATE, UiState} from '../ui-state';
 import {
-  CURRENT_FAVOURITE_SELECTED_FROM_URL_LOADED_ACTION, SYSTEM_INFO_LOADED_ACTION,
+  ANALYTICS_LOADED_ACTION,
+  CURRENT_FAVOURITE_SELECTED_FROM_URL_LOADED_ACTION, ERROR_OCCURRED_ACTION, SYSTEM_INFO_LOADED_ACTION,
 } from '../actions';
 export function uiStateReducer(state: UiState = INITIAL_UI_STATE, action) {
   switch (action.type) {
@@ -24,6 +25,15 @@ export function uiStateReducer(state: UiState = INITIAL_UI_STATE, action) {
       currentMap.layers = action.payload.layers;
       newState.currentMap = currentMap;
       return newState;
+    }
+
+    case ANALYTICS_LOADED_ACTION: {
+      const newState: UiState = _.clone(state);
+      return newState;
+    }
+
+    case ERROR_OCCURRED_ACTION: {
+      console.log(action.payload);
     }
 
     default:

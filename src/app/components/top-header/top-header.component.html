@@ -27,21 +27,21 @@
             [mapFavourites]="currentFavouritePage">
           </app-favourites>
           <div class="row">
-          <div class="col-8">
-            <app-pagination *ngIf="mapFavourites"
-                            (returnCurrentPage)="setCurrentFavouritePage($event)"
-                            [paginationMapFavourites]="mapFavourites"
-                            [pageSize]="20">
-            </app-pagination>
-          </div>
-          <div class="col-4">
-            <div class="d-flex justify-content-end">
-              <a class="imap-button-default" (click)="cancelFavouritePanel()">
-                CLOSE
-              </a>
-              &nbsp;
+            <div class="col-8">
+              <app-pagination *ngIf="mapFavourites"
+                              (returnCurrentPage)="setCurrentFavouritePage($event)"
+                              [paginationMapFavourites]="mapFavourites"
+                              [pageSize]="20">
+              </app-pagination>
             </div>
-          </div>
+            <div class="col-4">
+              <div class="d-flex justify-content-end">
+                <a class="imap-button-default" (click)="cancelFavouritePanel()">
+                  CLOSE
+                </a>
+                &nbsp;
+              </div>
+            </div>
           </div>
         </div>
       </li>
@@ -68,7 +68,9 @@
       </li>
     </ul>
   </div>
-
+  <div class="row" style="text-align: center;position:absolute;margin-left: 50%!important;margin-top: 12px">
+    <app-loader *ngIf="showLoading" [loadingMessage]="'Loading&nbsp;...'" [loaderHeight]="'20px'"></app-loader>
+  </div>
   <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
     <li class="nav-item dropdown " [ngClass]="{show:showViewModeConfiguration}">
       <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" (click)="toggleViewModeConfiguration()"

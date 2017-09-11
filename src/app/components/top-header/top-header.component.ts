@@ -14,6 +14,7 @@ export class TopHeaderComponent implements OnInit {
   wrenchButtonVisibility: boolean = true;
   showViewModeConfiguration: boolean = false;
   viewModeConfiguration: string = '2D';
+  showLoading: boolean = true;
   currentFavouritePage: Array<any>;
   @Input() mapFavourites;
   @Output() favouriteSelected = new EventEmitter;

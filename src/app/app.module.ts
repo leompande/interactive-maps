@@ -24,7 +24,11 @@ import {uiStateReducer} from './store/reducers/ui-store-reducer';
 import {FavoriteEffect} from './store/effects/favorite.effect';
 import {MapService} from './providers/map-service.service';
 import {MapViewEffects} from './store/effects/map-view.effects';
-import { PaginationComponent } from './components/pagination/pagination.component';
+import {PaginationComponent} from './components/pagination/pagination.component';
+import {GeoFeatureService} from './providers/geo-feature.service';
+import {AnalyticsService} from './providers/analytics.service';
+import {BaseMaps} from './model/basemaps';
+import {LoaderComponent} from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     NewLayerFormComponent,
     FavouritesComponent,
     MapComponent,
-    PaginationComponent
+    PaginationComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +51,18 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     EffectsModule.run(MapViewEffects),
     StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],
-  providers: [SystemInfoService, ManifestService, LoginRedirectService, HttpClientService, CurrentUserService, FavoriteService, MapService],
+  providers: [
+    SystemInfoService,
+    ManifestService,
+    LoginRedirectService,
+    HttpClientService,
+    CurrentUserService,
+    FavoriteService,
+    MapService,
+    GeoFeatureService,
+    AnalyticsService,
+    BaseMaps
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

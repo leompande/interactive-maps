@@ -2,8 +2,10 @@ import {Actions, Effect} from '@ngrx/effects';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {
+  LOAD_CURRENT_FAVOURITE_SELECTED_FROM_URL_ACTION,
+  LOAD_USER_FAVOURITES_ACTION,
   CurrentFavouriteSelectedFromUrlLoadedAction,
-  ErrorOccurredAction, LOAD_CURRENT_FAVOURITE_SELECTED_FROM_URL_ACTION, LOAD_USER_FAVOURITES_ACTION,
+  ErrorOccurredAction,
   UserFavouritesLoadedAction
 } from '../actions';
 import {Action, Store} from '@ngrx/store';
@@ -28,7 +30,8 @@ export class FavoriteEffect {
   @Effect() currentMapfavourite: Observable<Action> = this.actions$
     .ofType(LOAD_CURRENT_FAVOURITE_SELECTED_FROM_URL_ACTION)
     .switchMap((action) => this.favoriteService.loadSelectedMapFavourite(action.payload))
+    .map((selectedfavourite) => this.favoriteService.prepareMapFromFavourite(selectedfavourite))
     .map((currentSelectedFavourite) => new CurrentFavouriteSelectedFromUrlLoadedAction(currentSelectedFavourite))
-    .catch(() => Observable.of(new ErrorOccurredAction('Problem occurred during initializing application')));
+    .catch((errorPayload) => Observable.of(new ErrorOccurredAction(errorPayload)));
 
 }
